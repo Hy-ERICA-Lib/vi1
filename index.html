@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="한양대학교 ERICA학술정보관 정용민의 소개 페이지">
+  <title>정용민 · Yongmin Jung</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    :root {
+      color-scheme: dark;
+      --ink: #f2f5f3;
+      --muted: #a5b0aa;
+      --paper: #0d1210;
+      --card: #151c19;
+      --green: #8de8bd;
+      --lime: #d8f36a;
+      --line: rgba(232, 242, 237, .14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 82% 12%, rgba(62, 150, 110, .16), transparent 30%),
+        linear-gradient(rgba(232,242,237,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,242,237,.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: "DM Sans", "Noto Sans KR", sans-serif;
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo { font-weight: 900; letter-spacing: -.04em; }
+    .logo span { color: var(--green); }
+    nav a { text-decoration: none; font-size: .92rem; font-weight: 700; }
+    nav .links { display: flex; gap: 28px; }
+    .nav-group { position: relative; display: flex; align-items: center; }
+    .nav-parent { display: inline-flex; align-items: center; gap: 6px; cursor: default; font-size: .92rem; font-weight: 700; }
+    .nav-parent::after { content: "⌄"; color: var(--green); font-size: .85rem; }
+    .submenu { position: absolute; z-index: 20; top: calc(100% + 14px); left: 50%; width: 180px; padding: 8px; border: 1px solid var(--line); border-radius: 14px; background: #151c19; box-shadow: 0 18px 45px rgba(0,0,0,.35); opacity: 0; visibility: hidden; transform: translate(-50%, -8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+    .submenu::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+    .submenu a { display: block; padding: 11px 12px; border-radius: 9px; color: var(--muted); white-space: nowrap; }
+    .submenu a:hover, .submenu a:focus-visible { background: rgba(141,232,189,.1); color: var(--green); }
+    .nav-group:hover .submenu, .nav-group:focus-within .submenu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 56px;
+      align-items: end;
+      min-height: 650px;
+      padding: 90px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 30px;
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .eyebrow::before { content: ""; width: 38px; height: 2px; background: currentColor; }
+
+    h1 {
+      margin: 0;
+      max-width: 830px;
+      font-size: clamp(3.8rem, 9vw, 8rem);
+      line-height: .92;
+      letter-spacing: -.085em;
+    }
+
+    h1 em { color: var(--green); font-style: normal; }
+
+    .intro {
+      max-width: 670px;
+      margin: 36px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .orb {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #183d30;
+      color: var(--lime);
+      box-shadow: inset 0 0 0 18px rgba(255,255,255,.08);
+      transform: rotate(8deg);
+    }
+
+    .orb span { font-size: clamp(4rem, 10vw, 7rem); font-weight: 900; letter-spacing: -.08em; }
+
+    section { padding: 100px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 48px; }
+    .kicker { margin: 0 0 12px; color: var(--green); font-size: .78rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(2.3rem, 5vw, 4.5rem); letter-spacing: -.06em; line-height: 1; }
+    .section-no { color: var(--muted); font-size: .85rem; font-weight: 700; }
+    .interest-subsection { padding-top: 88px; margin-top: 88px; border-top: 1px solid var(--line); }
+    .interest-subsection .section-head h2 { font-size: clamp(2rem, 4.2vw, 3.8rem); }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      min-height: 290px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover { transform: translateY(-7px); box-shadow: 0 20px 50px rgba(0,0,0,.32); border-color: rgba(141,232,189,.34); }
+    .icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: #17211d; font-size: 1.5rem; }
+    .card h3 { margin: 60px 0 12px; font-size: 1.35rem; letter-spacing: -.035em; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.7; word-break: keep-all; }
+
+    .note {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 40px;
+      padding: 44px;
+      border-radius: 24px;
+      color: white;
+      background: #173d30;
+    }
+    .note strong { color: var(--lime); font-size: 1.1rem; }
+    .note p { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.6; letter-spacing: -.02em; }
+
+    .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .contact-item { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 150px; padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--card); text-decoration: none; transition: transform .25s ease, border-color .25s ease; }
+    .contact-item:hover { transform: translateY(-5px); border-color: rgba(141,232,189,.5); }
+    .contact-label { display: block; margin-bottom: 10px; color: var(--muted); font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .contact-value { font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight: 700; word-break: break-all; }
+    .contact-arrow { color: var(--green); font-size: 1.8rem; }
+
+    .library-panel { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: end; padding: clamp(34px, 6vw, 64px); border: 1px solid rgba(141,232,189,.25); border-radius: 28px; background: linear-gradient(135deg, #173d30, #101a16); }
+    .library-panel::after { content: "LIBRARY"; position: absolute; top: -20px; right: -10px; color: rgba(216,243,106,.06); font-size: clamp(5rem, 12vw, 10rem); font-weight: 900; letter-spacing: -.08em; pointer-events: none; }
+    .library-panel h3 { position: relative; margin: 0 0 22px; color: white; font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.08; letter-spacing: -.055em; }
+    .library-panel p { position: relative; margin: 0; color: #bac9c1; font-size: 1.05rem; line-height: 1.8; word-break: keep-all; }
+    .library-features { position: relative; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .library-features span { padding: 9px 13px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: #dce7e1; font-size: .82rem; }
+    .official-link { position: relative; display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%; padding: 20px 22px; border-radius: 14px; background: var(--lime); color: #17211d; font-weight: 900; text-decoration: none; transition: transform .25s ease, box-shadow .25s ease; }
+    .official-link:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,.28); }
+
+    .running-panel { display: grid; grid-template-columns: .75fr 1.25fr; min-height: 390px; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: var(--card); }
+    .running-visual { position: relative; display: grid; align-items: end; overflow: hidden; min-height: 560px; background: #173d70; color: white; }
+    .running-visual::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(5,12,18,.82)); }
+    .running-visual img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 34%; transition: transform .7s ease; }
+    .running-visual:hover img { transform: scale(1.03); }
+    .distance { position: relative; z-index: 1; margin: 24px; padding: 13px 16px; border: 1px solid rgba(255,255,255,.24); border-radius: 14px; background: rgba(6,15,24,.64); text-align: left; backdrop-filter: blur(8px); }
+    .distance strong { display: block; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: .85; letter-spacing: -.07em; }
+    .distance span { display: block; margin-top: 9px; color: #dce8f5; font-size: .68rem; font-weight: 900; letter-spacing: .18em; }
+    .running-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(34px, 7vw, 72px); }
+    .running-copy blockquote { margin: 0 0 28px; font-size: clamp(1.65rem, 3.6vw, 3rem); font-weight: 700; line-height: 1.35; letter-spacing: -.045em; word-break: keep-all; }
+    .running-copy p { max-width: 580px; margin: 0; color: var(--muted); line-height: 1.8; word-break: keep-all; }
+    .race-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; padding: 0; list-style: none; }
+    .race-list li { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font-size: .88rem; font-weight: 700; }
+    .race-list li::before { content: "✓"; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: #10251d; font-size: .7rem; font-weight: 900; }
+    .training-link { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 24px; padding: 18px 20px; border: 1px solid rgba(141,232,189,.28); border-radius: 15px; background: rgba(141,232,189,.07); text-decoration: none; transition: background .25s ease, transform .25s ease; }
+    .training-link:hover { background: rgba(141,232,189,.13); transform: translateY(-3px); }
+    .training-link strong { display: block; color: var(--green); font-size: .92rem; }
+    .training-link small { display: block; margin-top: 5px; color: var(--muted); line-height: 1.5; }
+    .training-link > span:last-child { color: var(--green); font-size: 1.5rem; }
+    .trail-panel { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.15fr .85fr; min-height: 380px; padding: clamp(36px, 7vw, 72px); border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, #18231e, #101512); }
+    .trail-panel::before, .trail-panel::after { content: ""; position: absolute; left: -8%; bottom: -1px; width: 58%; height: 42%; background: #203b2e; clip-path: polygon(0 100%, 45% 18%, 61% 48%, 76% 12%, 100% 100%); opacity: .42; }
+    .trail-panel::after { left: 18%; width: 42%; height: 30%; background: #315c45; opacity: .28; }
+    .trail-copy { position: relative; z-index: 1; align-self: center; }
+    .trail-copy h3 { margin: 0 0 22px; font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.12; letter-spacing: -.055em; }
+    .trail-copy p { max-width: 600px; margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.8; word-break: keep-all; }
+    .trail-tag { display: inline-flex; margin-top: 30px; padding: 10px 15px; border: 1px solid rgba(141,232,189,.3); border-radius: 999px; color: var(--green); font-size: .82rem; font-weight: 800; letter-spacing: .05em; }
+    .trail-photo { position: relative; z-index: 1; align-self: stretch; min-height: 430px; margin: -26px -26px -26px 0; overflow: hidden; border-radius: 22px; background: #203b2e; }
+    .trail-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 42%; transition: transform .7s ease; }
+    .trail-photo:hover img { transform: scale(1.035); }
+    .trail-photo figcaption { position: absolute; left: 16px; bottom: 16px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(10,17,14,.72); color: white; font-size: .75rem; font-weight: 700; backdrop-filter: blur(8px); }
+
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 38px 0 46px; color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 760px) {
+      nav .links { display: none; }
+      header { grid-template-columns: 1fr; min-height: auto; padding-top: 70px; }
+      .orb { width: 190px; justify-self: end; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 230px; }
+      .card h3 { margin-top: 38px; }
+      .note { grid-template-columns: 1fr; padding: 32px; }
+      .contact-list { grid-template-columns: 1fr; }
+      .library-panel { grid-template-columns: 1fr; }
+      .running-panel { grid-template-columns: 1fr; }
+      .running-visual { min-height: 560px; }
+      .trail-panel { grid-template-columns: 1fr; min-height: 440px; }
+      .trail-panel::before, .trail-panel::after { width: 90%; height: 42%; }
+      .trail-photo { min-height: 420px; margin: 16px 0 0; }
+      footer { flex-direction: column; }
+    }
+    /* Naver-inspired light portal theme */
+    :root {
+      color-scheme: light;
+      --ink: #101010;
+      --muted: #606060;
+      --paper: #f5f6f7;
+      --card: #ffffff;
+      --green: #03c75a;
+      --lime: #03c75a;
+      --line: #e5e8eb;
+    }
+
+    body {
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+    }
+
+    .wrap { width: min(1180px, calc(100% - 40px)); }
+    nav { position: sticky; z-index: 50; top: 0; min-height: 68px; margin-top: 16px; padding: 0 24px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.94); box-shadow: 0 4px 18px rgba(0,0,0,.035); backdrop-filter: blur(12px); }
+    .logo { color: #03c75a; font-size: 1.35rem; letter-spacing: -.06em; }
+    .logo span { color: #03c75a; }
+    nav a, .nav-parent { color: #303038; }
+    .nav-parent::after { color: #03c75a; }
+    .submenu { border-color: var(--line); background: white; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+    .submenu a { color: #606060; }
+    .submenu a:hover, .submenu a:focus-visible { color: #03a94f; background: #effbf4; }
+
+    header { min-height: 580px; margin-top: 20px; padding: clamp(54px, 8vw, 92px); border: 1px solid var(--line); border-radius: 28px; background: white; box-shadow: 0 8px 28px rgba(0,0,0,.035); }
+    .eyebrow { padding: 9px 14px; border-radius: 999px; color: #03a94f; background: #effbf4; font-size: .82rem; }
+    .eyebrow::before { width: 8px; height: 8px; border-radius: 50%; background: #03c75a; }
+    h1 { font-size: clamp(3.6rem, 8vw, 7.4rem); }
+    h1 em { color: #03c75a; }
+    .intro { color: #606060; }
+    .orb { position: relative; border-radius: 30px; background: #03c75a; color: white; box-shadow: none; transform: rotate(3deg); }
+    .orb::after { content: "SEARCH · CONNECT · SHARE"; position: absolute; bottom: 24px; font-size: .65rem; font-weight: 800; letter-spacing: .15em; opacity: .72; }
+
+    section { margin-top: 20px; padding: clamp(54px, 7vw, 88px); border: 1px solid var(--line); border-radius: 28px; background: white; }
+    .kicker { color: #03a94f; }
+    .section-no { color: #929294; }
+    .interest-subsection { border-color: var(--line); }
+    .cards { gap: 14px; }
+    .card { border-color: var(--line); background: #f8faf9; box-shadow: none; }
+    .card:hover { border-color: #03c75a; box-shadow: 0 12px 28px rgba(3,199,90,.08); }
+    .icon { background: #03c75a; color: white; }
+    .card p, .running-copy p, .trail-copy p { color: #606060; }
+
+    .note { color: white; background: #03c75a; }
+    .note strong { color: white; opacity: .76; }
+    .running-panel { border-color: var(--line); background: white; }
+    .race-list li { border-color: var(--line); color: #303038; background: #f8faf9; }
+    .race-list li::before { color: white; background: #03c75a; }
+    .training-link { border-color: #b9efd0; background: #effbf4; }
+    .training-link:hover { background: #e2f8eb; }
+    .training-link strong, .training-link > span:last-child { color: #03a94f; }
+
+    .trail-panel { border-color: var(--line); background: #f3f8f5; }
+    .trail-panel::before { background: #b9e9cf; }
+    .trail-panel::after { background: #83d7a8; }
+    .trail-copy h3 { color: #173327; }
+    .trail-tag { color: #038c43; border-color: #9be1ba; background: white; }
+    .trail-photo { background: #dceee4; }
+
+    .library-panel { border-color: #03c75a; background: #03c75a; }
+    .library-panel::after { color: rgba(255,255,255,.09); }
+    .library-panel p { color: rgba(255,255,255,.82); }
+    .library-features span { color: white; border-color: rgba(255,255,255,.28); }
+    .official-link { color: #03a94f; background: white; }
+    .contact-item { border-color: var(--line); background: #f8faf9; }
+    .contact-item:hover { border-color: #03c75a; }
+    .contact-arrow { color: #03c75a; }
+    footer { padding-right: 20px; padding-left: 20px; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      nav { margin-top: 10px; padding: 0 18px; }
+      header { padding: 48px 26px; }
+      section { padding: 48px 24px; }
+      .orb { border-radius: 24px; }
+    }
+    /* Naver-inspired dark mode */
+    :root {
+      color-scheme: dark;
+      --ink: #f2f2f2;
+      --muted: #a6a6a6;
+      --paper: #1e1f21;
+      --card: #292a2d;
+      --green: #03c75a;
+      --lime: #03c75a;
+      --line: #3a3b3e;
+    }
+    body { background: #1e1f21; color: #f2f2f2; }
+    nav { border-color: #3a3b3e; background: rgba(41,42,45,.96); box-shadow: 0 5px 20px rgba(0,0,0,.18); }
+    nav a, .nav-parent { color: #e8e8e8; }
+    .submenu { border-color: #414246; background: #292a2d; box-shadow: 0 12px 30px rgba(0,0,0,.34); }
+    .submenu a { color: #b8b8b8; }
+    .submenu a:hover, .submenu a:focus-visible { color: #4ddb87; background: #22382b; }
+    header, section { border-color: #3a3b3e; background: #292a2d; box-shadow: 0 8px 28px rgba(0,0,0,.12); }
+    .eyebrow { color: #4ddb87; background: #20382a; }
+    .intro, .card p, .running-copy p, .trail-copy p { color: #a6a6a6; }
+    .card, .contact-item { border-color: #3f4044; background: #242528; }
+    .card:hover, .contact-item:hover { border-color: #03c75a; box-shadow: 0 12px 30px rgba(3,199,90,.1); }
+    .section-no { color: #858589; }
+    .race-list li { border-color: #424347; color: #ededed; background: #242528; }
+    .training-link { border-color: #286e48; background: #20382a; }
+    .training-link:hover { background: #254a34; }
+    .training-link small { color: #a6a6a6; }
+    .trail-panel { border-color: #3f4044; background: #232925; }
+    .trail-panel::before { background: #28583d; }
+    .trail-panel::after { background: #34734f; }
+    .trail-copy h3 { color: #f0f4f1; }
+    .trail-tag { color: #5fe094; border-color: #397b56; background: #263c2e; }
+    .running-panel { border-color: #3f4044; background: #242528; }
+    .note, .library-panel { background: #03b956; }
+    .contact-label, footer { color: #929294; }
+    button.contact-item { color: var(--ink); font: inherit; text-align: left; cursor: copy; }
+    .race-list small { color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+    .nav-actions { display: flex; gap: 8px; margin-left: 18px; }
+    .utility-btn { min-width: 42px; height: 38px; padding: 0 11px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: var(--card); font: inherit; font-size: .78rem; font-weight: 800; cursor: pointer; }
+    .utility-btn:hover { border-color: var(--green); color: var(--green); }
+    .site-search { display: flex; align-items: center; gap: 12px; max-width: 720px; height: 64px; margin: 28px auto 8px; padding: 0 20px; border: 2px solid var(--green); border-radius: 20px; background: var(--card); box-shadow: 0 7px 24px rgba(0,0,0,.1); }
+    .site-search strong { color: var(--green); font-size: 1.25rem; }
+    .site-search input { flex: 1; min-width: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font: inherit; font-size: 1rem; }
+    .site-search button { border: 0; color: white; background: var(--green); border-radius: 11px; padding: 10px 15px; font: inherit; font-weight: 800; cursor: pointer; }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px; }
+    .gallery button { position: relative; overflow: hidden; aspect-ratio: 16/9; padding: 0; border: 0; border-radius: 18px; background: #151515; cursor: zoom-in; }
+    .gallery img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .45s ease; }
+    .gallery button:hover img { transform: scale(1.045); }
+    .gallery span { position: absolute; left: 14px; bottom: 14px; padding: 8px 11px; border-radius: 999px; color: white; background: rgba(0,0,0,.64); font-size: .75rem; font-weight: 800; }
+    .lightbox { position: fixed; z-index: 100; inset: 0; display: none; place-items: center; padding: 30px; border: 0; background: rgba(0,0,0,.88); cursor: zoom-out; }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-width: min(1100px, 94vw); max-height: 88vh; border-radius: 18px; }
+    .toast { position: fixed; z-index: 120; left: 50%; bottom: 28px; padding: 12px 18px; border-radius: 999px; color: white; background: #03a94f; font-size: .85rem; font-weight: 800; opacity: 0; transform: translate(-50%, 15px); pointer-events: none; transition: .25s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    #toTop { position: fixed; z-index: 60; right: 24px; bottom: 24px; width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; color: white; background: var(--green); font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: .25s ease; }
+    #toTop.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    [data-theme="light"] { color-scheme: light; --ink: #101010; --muted: #606060; --paper: #f5f6f7; --card: #fff; --line: #e5e8eb; }
+    [data-theme="light"] body { color: #101010; background: #f5f6f7; }
+    [data-theme="light"] nav, [data-theme="light"] header, [data-theme="light"] section { border-color: #e5e8eb; background: rgba(255,255,255,.97); }
+    [data-theme="light"] nav a, [data-theme="light"] .nav-parent { color: #303038; }
+    [data-theme="light"] .card, [data-theme="light"] .contact-item, [data-theme="light"] .running-panel { border-color: #e5e8eb; background: #f8faf9; }
+    [data-theme="light"] .intro, [data-theme="light"] .card p, [data-theme="light"] .running-copy p, [data-theme="light"] .trail-copy p { color: #606060; }
+    [data-theme="light"] .trail-panel { border-color: #e5e8eb; background: #f3f8f5; }
+    [data-theme="light"] .trail-copy h3 { color: #173327; }
+    [data-theme="light"] .race-list li { border-color: #e5e8eb; color: #303038; background: #f8faf9; }
+    [data-theme="light"] .submenu { background: white; }
+    @media (max-width: 760px) { .nav-actions { margin-left: auto; } .site-search { margin-top: 18px; } .gallery { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav aria-label="주요 메뉴">
+      <a class="logo" href="#top">YONGMIN<span>.</span></a>
+      <div class="links">
+        <a href="#about">소개</a>
+        <div class="nav-group">
+          <a class="nav-parent" href="#interests">관심 분야</a>
+          <div class="submenu" aria-label="관심 분야 하위 메뉴">
+            <a href="#marathon">마라톤</a>
+            <a href="#trail">트레일 러닝</a>
+          </div>
+        </div>
+        <a href="#library">학술정보관</a>
+        <a href="#contact">연락처</a>
+      </div>
+      <div class="nav-actions">
+        <button class="utility-btn" id="languageToggle" type="button" aria-label="언어 전환">EN</button>
+        <button class="utility-btn" id="themeToggle" type="button" aria-label="화면 테마 전환">☀</button>
+      </div>
+    </nav>
+
+    <form class="site-search" id="siteSearch" role="search" action="https://search.naver.com/search.naver" method="get" target="_blank">
+      <strong>N</strong>
+      <input id="searchInput" name="query" type="search" placeholder="네이버에서 검색해 보세요" aria-label="네이버 검색" required>
+      <button type="submit">검색</button>
+    </form>
+
+    <header id="top">
+      <div>
+        <p class="eyebrow">Academic Information Services</p>
+        <h1>정용민<em>.</em><br>Yongmin Jung</h1>
+        <p class="intro">연구자와 지식이 더 잘 연결되는 환경을 만듭니다. 한양대학교 ERICA학술정보관에서 학술정보 서비스와 연구지원을 담당하며, 더 열린 학술 생태계에 관심을 두고 있습니다.</p>
+      </div>
+      <div class="orb" aria-hidden="true"><span>YJ</span></div>
+    </header>
+
+    <section id="interests">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Research interests</p>
+          <h2>관심과 활동</h2>
+        </div>
+        <span class="section-no">01 — 03</span>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon" aria-hidden="true">⌕</div>
+          <h3>학술정보 서비스</h3>
+          <p>이용자가 필요한 학술정보에 쉽고 정확하게 접근할 수 있는 서비스와 정보 환경에 관심을 둡니다.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">◌</div>
+          <h3>오픈액세스</h3>
+          <p>연구 성과가 더 널리 공유될 수 있도록 오픈액세스 출판과 논문 출판비용 지원 업무를 함께합니다.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">↗</div>
+          <h3>연구지원</h3>
+          <p>연구자의 탐색과 출판 과정을 지원하고, 대학의 연구 성과가 효과적으로 확산되는 방법을 고민합니다.</p>
+        </article>
+      </div>
+
+    <div class="interest-subsection" id="marathon">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Beyond the desk</p>
+          <h2>달리는 사람</h2>
+        </div>
+        <span class="section-no">MARATHON</span>
+      </div>
+      <div class="running-panel">
+        <div class="running-visual">
+          <img src="marathon-running.png" alt="보스톤 마라톤 메달을 들고 있는 완주 기념 모습">
+          <div class="distance"><strong>42.195</strong><span>KILOMETERS</span></div>
+        </div>
+        <div class="running-copy">
+          <blockquote>한 걸음씩,<br>끝까지 달립니다.</blockquote>
+          <p>마라톤은 제가 좋아하는 취미입니다. 긴 거리를 달리며 꾸준함의 힘을 배우고, 목표를 향해 나아가는 과정 자체를 즐깁니다. 업무에서도 긴 호흡으로 문제를 바라보고 끝까지 완주하는 태도를 소중히 여깁니다.</p>
+          <ul class="race-list" aria-label="참가 마라톤 대회">
+            <li><span>보스톤 마라톤<br><small>42.195K</small></span></li>
+            <li><span>동아 마라톤<br><small>42.195K</small></span></li>
+            <li><span>춘천 마라톤<br><small>42.195K</small></span></li>
+            <li><span>그리고 더 많은 레이스<br><small>KEEP RUNNING</small></span></li>
+          </ul>
+          <a class="training-link" href="https://www.baa.org/races/boston-marathon/info-for-athletes/boston-marathon-training/" target="_blank" rel="noopener noreferrer">
+            <span>
+              <strong>B.A.A. 마라톤 훈련 프로그램</strong>
+              <small>4단계 공식 훈련 계획과 목표 기록별 페이스 가이드 · 개인 상태에 맞게 조정하세요.</small>
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="interest-subsection" id="trail">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Into the wild</p>
+          <h2>트레일 러닝</h2>
+        </div>
+        <span class="section-no">TRAIL RUNNING</span>
+      </div>
+      <div class="trail-panel">
+        <div class="trail-copy">
+          <h3>길이 끝나는 곳에서<br>새로운 달리기가 시작됩니다.</h3>
+          <p>도로를 벗어나 숲과 산길을 달리는 트레일 러닝도 즐깁니다. 변화하는 지형에 집중하고 자연의 흐름에 호흡을 맞추며, 속도보다 과정과 풍경을 온전히 경험하는 달리기를 좋아합니다.</p>
+          <ul class="race-list" aria-label="참가 트레일 러닝 대회">
+            <li><span>KOREA<br><small>50K</small></span></li>
+            <li><span>치앙마이<br><small>100K</small></span></li>
+            <li><span>Jeju UTMB<br><small>100K</small></span></li>
+          </ul>
+          <span class="trail-tag">FOREST · MOUNTAIN · ENDURANCE</span>
+        </div>
+        <figure class="trail-photo">
+          <img src="trail-running.png" alt="산 정상에서 풍경을 배경으로 촬영한 트레일 러닝 모습">
+          <figcaption>TRAIL 50K · ABOVE THE CLOUDS</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="gallery" aria-label="러닝 사진 갤러리">
+      <button type="button" data-full="marathon-running.png" aria-label="보스톤 마라톤 사진 크게 보기">
+        <img src="marathon-running.png" alt="보스톤 마라톤 완주 사진">
+        <span>BOSTON MARATHON</span>
+      </button>
+      <button type="button" data-full="trail-running.png" aria-label="트레일 러닝 사진 크게 보기">
+        <img src="trail-running.png" alt="산 정상 트레일 러닝 사진">
+        <span>TRAIL RUNNING</span>
+      </button>
+    </div>
+    </section>
+
+    <section id="about">
+      <div class="note">
+        <strong>ABOUT THIS PROFILE</strong>
+        <p>한양대학교 ERICA학술정보관 학술정보팀에서 연구자와 학술자료, 출판 생태계를 연결합니다. 정보 접근의 장벽을 낮추고 연구의 시작부터 확산까지 든든하게 지원하는 일을 지향합니다.</p>
+      </div>
+    </section>
+
+    <section id="library">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Where I work</p>
+          <h2>ERICA학술정보관</h2>
+        </div>
+        <span class="section-no">HANYANG UNIVERSITY</span>
+      </div>
+      <div class="library-panel">
+        <div>
+          <h3>배움과 연구를<br>연결하는 지식 공간</h3>
+          <p>한양대학교 ERICA학술정보관은 소장자료와 구독 전자자료를 한 번에 탐색할 수 있는 학술정보 서비스를 제공합니다. 학습·연구지원과 다양한 시설을 통해 구성원의 발견과 성장을 함께합니다.</p>
+          <div class="library-features" aria-label="주요 서비스">
+            <span>통합 자료검색</span>
+            <span>학습·연구지원</span>
+            <span>전자자료</span>
+            <span>시설 이용</span>
+          </div>
+        </div>
+        <div>
+          <a class="official-link" href="https://information.hanyang.ac.kr/" target="_blank" rel="noopener noreferrer">
+            <span>공식 홈페이지 방문</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>연락처</h2>
+        </div>
+        <span class="section-no">연구지원 문의</span>
+      </div>
+      <div class="contact-list">
+        <button class="contact-item" type="button" data-copy="ranter@hanyang.ac.kr">
+          <span><span class="contact-label">Email</span><span class="contact-value">ranter@hanyang.ac.kr</span></span>
+          <span class="contact-arrow" aria-hidden="true">⧉</span>
+        </button>
+        <button class="contact-item" type="button" data-copy="031-400-4253">
+          <span><span class="contact-label">Office</span><span class="contact-value">031-400-4253</span></span>
+          <span class="contact-arrow" aria-hidden="true">⧉</span>
+        </button>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Yongmin Jung</span>
+      <span>Built as a single HTML file.</span>
+    </footer>
+  </div>
+  <button class="lightbox" id="lightbox" type="button" aria-label="사진 닫기"><img src="" alt="확대 사진"></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button id="toTop" type="button" aria-label="맨 위로 이동">↑</button>
+  <script>
+    const root = document.documentElement;
+    const toast = document.querySelector('#toast');
+    const themeToggle = document.querySelector('#themeToggle');
+    const languageToggle = document.querySelector('#languageToggle');
+    const toTop = document.querySelector('#toTop');
+    document.querySelector('#year').textContent = new Date().getFullYear();
+
+    const notify = (message) => {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(notify.timer);
+      notify.timer = setTimeout(() => toast.classList.remove('show'), 1800);
+    };
+
+    const savedTheme = localStorage.getItem('profile-theme') || 'dark';
+    root.dataset.theme = savedTheme;
+    themeToggle.textContent = savedTheme === 'dark' ? '☀' : '☾';
+    themeToggle.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem('profile-theme', next);
+      themeToggle.textContent = next === 'dark' ? '☀' : '☾';
+      notify(next === 'dark' ? '다크 모드로 전환했습니다.' : '라이트 모드로 전환했습니다.');
+    });
+
+    const translations = [
+      ['nav .links > a[href="#about"]', 'About'],
+      ['.nav-parent', 'Interests'],
+      ['.submenu a[href="#marathon"]', 'Marathon'],
+      ['.submenu a[href="#trail"]', 'Trail Running'],
+      ['nav a[href="#library"]', 'Library'],
+      ['nav a[href="#contact"]', 'Contact'],
+      ['.intro', 'I build better connections between researchers and knowledge. At Hanyang University ERICA Library, I support academic information services and research while working toward a more open scholarly ecosystem.'],
+      ['#interests > .section-head h2', 'Interests & Activities'],
+      ['#marathon .section-head h2', 'Marathon Runner'],
+      ['#trail .section-head h2', 'Trail Running'],
+      ['#about .note p', 'At Hanyang University ERICA Library, I connect researchers, scholarly resources, and publishing. I aim to lower barriers to information and support research from discovery to dissemination.'],
+      ['#library .section-head h2', 'ERICA Library'],
+      ['#contact .section-head h2', 'Contact'],
+      ['.official-link span:first-child', 'Visit official website'],
+      ['#siteSearch button', 'Search']
+    ];
+    translations.forEach(([selector]) => {
+      const el = document.querySelector(selector);
+      if (el) el.dataset.ko = el.innerHTML;
+    });
+    languageToggle.addEventListener('click', () => {
+      const english = root.lang !== 'en';
+      root.lang = english ? 'en' : 'ko';
+      translations.forEach(([selector, en]) => {
+        const el = document.querySelector(selector);
+        if (el) el.innerHTML = english ? en : el.dataset.ko;
+      });
+      document.querySelector('#searchInput').placeholder = english ? 'Search on Naver' : '네이버에서 검색해 보세요';
+      languageToggle.textContent = english ? 'KO' : 'EN';
+      notify(english ? 'Switched to English.' : '한국어로 전환했습니다.');
+    });
+
+    document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        notify(`${button.dataset.copy} 복사 완료`);
+      } catch {
+        const helper = document.createElement('textarea');
+        helper.value = button.dataset.copy;
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+        notify(`${button.dataset.copy} 복사 완료`);
+      }
+    }));
+
+    const lightbox = document.querySelector('#lightbox');
+    document.querySelectorAll('.gallery button').forEach(button => button.addEventListener('click', () => {
+      lightbox.querySelector('img').src = button.dataset.full;
+      lightbox.classList.add('open');
+    }));
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') lightbox.classList.remove('open'); });
+
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    }), { threshold: .08 });
+    document.querySelectorAll('header, section').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
+    window.addEventListener('scroll', () => toTop.classList.toggle('visible', scrollY > 650), { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
